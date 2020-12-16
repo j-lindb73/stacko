@@ -29,6 +29,10 @@ class CreateUserForm extends FormModel
                     "type"        => "text",
                 ],
         
+                "email" => [
+                    "type"        => "email",
+                ],
+
                 "password" => [
                     "type"        => "password",
                 ],
@@ -61,6 +65,7 @@ class CreateUserForm extends FormModel
     {
         // Get values from the submitted form
         $acronym       = $this->form->value("acronym");
+        $email       = $this->form->value("email");
         $password      = $this->form->value("password");
         $passwordAgain = $this->form->value("password-again");
     
@@ -81,6 +86,7 @@ class CreateUserForm extends FormModel
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $user->acronym = $acronym;
+        $user->email = $email;
         $user->setPassword($password);
         $user->save();
     

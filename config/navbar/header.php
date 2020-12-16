@@ -15,20 +15,20 @@ return [
             "title" => "Första sidan, börja här.",
         ],
         [
-            "text" => "Redovisning",
-            "url" => "redovisning",
-            "title" => "Redovisningstexter från kursmomenten.",
+            "text" => "Users",
+            "url" => "user",
+            "title" => "Administer users.",
             "submenu" => [
                 "items" => [
                     [
-                        "text" => "Kmom01",
-                        "url" => "redovisning/kmom01",
-                        "title" => "Redovisning för kmom01.",
+                        "text" => "Create",
+                        "url" => "user/create",
+                        "title" => "Create user.",
                     ],
                     [
-                        "text" => "Kmom02",
-                        "url" => "redovisning/kmom02",
-                        "title" => "Redovisning för kmom02.",
+                        "text" => "Login",
+                        "url" => "user/login",
+                        "title" => "Login user.",
                     ],
                 ],
             ],
