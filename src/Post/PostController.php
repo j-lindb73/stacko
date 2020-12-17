@@ -4,8 +4,8 @@ namespace Lefty\Post;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-use Lefty\Post\HTMLForm\UserLoginForm;
 use Lefty\Post\HTMLForm\CreatePostForm;
+use Lefty\Post\HTMLForm\UpdatePostForm;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -53,16 +53,17 @@ class PostController implements ContainerInjectableInterface
     public function indexActionGet() : object
     {
         $page = $this->di->get("page");
+        $post = new Post();
+        $post->setDb($this->di->get("dbqb"));
 
-        $page->add("anax/v2/article/default", [
-            "content" => "An index page",
+        $page->add("post/crud/view-all", [
+            "items" => $post->findAll(),
         ]);
 
         return $page->render([
-            "title" => "A index page",
+            "title" => "A collection of items",
         ]);
     }
-
 
 
     /**
@@ -104,8 +105,12 @@ class PostController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
         $request = $this->di->get("request");
-        var_dump($request);
-        $form = new CreatePostForm($this->di);
+        // var_dump($request);
+        $parentId = $request->getGet('id', null);
+
+        var_dump($parentId);
+
+        $form = new CreatePostForm($this->di, $parentId);
         $form->check();
 
         $page->add("anax/v2/article/default", [
@@ -114,6 +119,28 @@ class PostController implements ContainerInjectableInterface
 
         return $page->render([
             "title" => "A create question page",
+        ]);
+    }
+
+        /**
+     * Handler with form to update an item.
+     *
+     * @param int $id the id to update.
+     *
+     * @return object as a response object
+     */
+    public function updateAction(int $id) : object
+    {
+        $page = $this->di->get("page");
+        $form = new UpdatePostForm($this->di, $id);
+        $form->check();
+
+        $page->add("post/crud/update", [
+            "form" => $form->getHTML(),
+        ]);
+
+        return $page->render([
+            "title" => "Update an item",
         ]);
     }
 }

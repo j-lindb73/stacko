@@ -34,6 +34,20 @@ return [
             ],
         ],
         [
+            "text" => "Posts",
+            "url" => "post",
+            "title" => "Administer posts.",
+            "submenu" => [
+                "items" => [
+                    [
+                        "text" => "Create",
+                        "url" => "post/create",
+                        "title" => "Create post.",
+                    ],
+                ],
+            ],
+        ],
+        [
             "text" => "Om",
             "url" => "om",
             "title" => "Om denna webbplats.",

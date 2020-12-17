@@ -15,23 +15,41 @@ class CreatePostForm extends FormModel
      * Constructor injects with DI container.
      *
      * @param Psr\Container\ContainerInterface $di a service container
+     *      
      */
-    public function __construct(ContainerInterface $di)
+
+     public $parentId;
+
+    public function __construct(ContainerInterface $di, $parentId = null)
     {
         parent::__construct($di);
+
+        var_dump($parentId);
+        $this->parentId = $parentId;
+
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Create question",
+                "legend" => "Create post",
             ],
             [
                 "title" => [
                     "type"        => "text",
                 ],
+
+                "parentId" => [
+                    "type"        => "hidden",
+                ],
+
+                "postTypeId" => [
+                    "type"        => "hidden",
+                ],
+
+
                 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Create question",
+                    "value" => "Create post",
                     "callback" => [$this, "callbackSubmit"]
                 ],
             ]
@@ -52,7 +70,8 @@ class CreatePostForm extends FormModel
         $title       = $this->form->value("title");
         
         // Set post type        
-        $postTypeId       = 1;
+        $postTypeId = isset($this->parentId) ? 2 : 1;
+
  
         // Set userid until fetched from session
         $userId = 1;
@@ -75,6 +94,7 @@ class CreatePostForm extends FormModel
         $post->setDb($this->di->get("dbqb"));
         $post->title = $title;
         $post->postTypeId = $postTypeId;
+        $post->parentId = $this->parentId;
         $post->userId = $userId;
         // $user->setPassword($password);
         $post->save();
