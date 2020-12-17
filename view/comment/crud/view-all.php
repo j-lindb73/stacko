@@ -16,7 +16,6 @@ $items = isset($items) ? $items : null;
 $urlToCreate = url("post/create");
 $urlToDelete = url("book/delete");
 $urlToAnswer = url("post/create");
-$urlToComment = url("comment/create");
 
 
 
@@ -37,7 +36,7 @@ endif;
 <table>
     <tr>
         <th>Id</th>
-        <th>Posttype</th>
+
         <th>ParentId</th>
         <th>Title</th>
         <th>Created</th>
@@ -47,26 +46,13 @@ endif;
 
     <tr>
         <td>
-            <a href="<?= url("post/update/{$item->id}"); ?>"><?= $item->id ?></a>
+            <a href="<?= url("comment/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
-        <td><?= $item->postTypeId ?></td>
         <td><?= $item->parentId ?></td>
-        <td><?= $item->title ?></td>
+        <td><?= $item->body ?></td>
         <td><?= $item->created ?></td>
-        <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
-        <td><a href="<?= url("comment/create/{$item->id}"); ?>">Comment</a></td>
+
 
     </tr>
     <?php endforeach; ?>
 </table>
-
-<?php
-function generateLink($urlToAnswer, $postTypeId, $id)
-{
-    $link = "";
-    if ($postTypeId == 1) {
-
-        $link = "<a href=" . $urlToAnswer . '?id=' . $id . ">Answer</a>";
-    }
-    return $link;
-}
