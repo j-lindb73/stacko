@@ -107,6 +107,7 @@ class CommentController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $form = new UpdateCommentForm($this->di, $id);
         $form->check();
+        
 
         $page->add("post/crud/update", [
             "form" => $form->getHTML(),

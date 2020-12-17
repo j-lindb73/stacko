@@ -4,6 +4,7 @@ namespace Lefty\Comment;
 
 use Anax\DatabaseActiveRecord\ActiveRecordModel;
 
+
 /**
  * A database driven model.
  */
@@ -26,6 +27,7 @@ class Comment extends ActiveRecordModel
     // public $updated;
     public $deleted;
     public $active;
+
 
     /**
     * Set the password.

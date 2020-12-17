@@ -1,6 +1,7 @@
 <?php
 
 namespace Anax\View;
+$filter = new \Anax\TextFilter\TextFilter;
 
 /**
  * View to display all books.
@@ -49,7 +50,7 @@ endif;
             <a href="<?= url("comment/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
         <td><?= $item->parentId ?></td>
-        <td><?= $item->body ?></td>
+        <td><?= $filter->doFilter($item->body, ["markdown"]); ?></td>
         <td><?= $item->created ?></td>
 
 

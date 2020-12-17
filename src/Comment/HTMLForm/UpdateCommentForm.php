@@ -85,6 +85,8 @@ class UpdateCommentForm extends FormModel
         $comment->find("id", $this->form->value("id"));
         $comment->body = $this->form->value("body");
 
+
+
         $comment->save();
         return true;
     }
