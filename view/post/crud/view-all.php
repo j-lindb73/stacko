@@ -40,6 +40,8 @@ endif;
         <th>Posttype</th>
         <th>ParentId</th>
         <th>Title</th>
+        <th>Text</th>
+        <th>Tags</th>
         <th>Created</th>
         <th>Answer</th>
     </tr>
@@ -52,6 +54,8 @@ endif;
         <td><?= $item->postTypeId ?></td>
         <td><?= $item->parentId ?></td>
         <td><?= $item->title ?></td>
+        <td><?= $item->text ?></td>
+        <td><?= $item->tags ?></td>
         <td><?= $item->created ?></td>
         <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
         <td><a href="<?= url("comment/create/{$item->id}"); ?>">Comment</a></td>

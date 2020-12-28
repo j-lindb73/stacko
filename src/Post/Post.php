@@ -21,6 +21,8 @@ class Post extends ActiveRecordModel
     */
     public $id;
     public $title;
+    public $text;
+    public $tags;
     public $postTypeId;
     public $userId;
     // public $created;

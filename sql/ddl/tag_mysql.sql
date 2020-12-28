@@ -26,28 +26,21 @@ USE stacko;
 SET NAMES utf8mb4;
 
 --
--- Table Posts
+-- Table Tags
 --
-DROP TABLE IF EXISTS Posts;
-CREATE TABLE Posts (
+DROP TABLE IF EXISTS Tags;
+CREATE TABLE Tags (
     `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    `postTypeId` INTEGER NOT NULL,
-    `parentId` INTEGER,
-    `userId` INTEGER NOT NULL,
-    `title` VARCHAR(128) NOT NULL,
-    `text` VARCHAR(2048),
-    `created` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-    `deleted` DATETIME,
-    `active` DATETIME
+    `tag` VARCHAR(128)
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
 
 
 
--- Table PostTypes
+-- Table PostTags
 --
-DROP TABLE IF EXISTS PostTypes;
-CREATE TABLE PostTypes (
+DROP TABLE IF EXISTS PostTags;
+CREATE TABLE PostTags (
     `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    `name` VARCHAR(32) NOT NULL
+    `post_id` INTEGER NOT NULL,
+    `tag_id` INTEGER NOT NULL
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
