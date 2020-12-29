@@ -44,6 +44,7 @@ endif;
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
+        <th>Edit</th>
 
     </tr>
     <?php foreach ($items as $item) : ?>
@@ -56,7 +57,9 @@ endif;
         <td><?= $item->firstname ?></td>
         <td><?= $item->lastname ?></td>
         <td><?= $item->email ?></td>
-    
+        <td>
+            <a href="<?= url("user/update/{$item->id}"); ?>"><?= $item->id ?></a>
+        </td>
 
     </tr>
     <?php endforeach; ?>
