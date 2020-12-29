@@ -49,9 +49,9 @@ class User extends ActiveRecordModel
     *
     * @return boolean true if acronym and password matches, else false.
     */
-    public function verifyPassword($acronym, $password)
+    public function verifyPassword($email, $password)
     {
-        $this->find("acronym", $acronym);
+        $this->find("email", $email);
         return password_verify($password, $this->password);
     }
 }
