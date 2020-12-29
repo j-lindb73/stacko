@@ -1,11 +1,10 @@
 <?php
 
-namespace Lefty\Post;
+namespace Lefty\Tag;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-use Lefty\Post\HTMLForm\CreatePostForm;
-use Lefty\Post\HTMLForm\UpdatePostForm;
+
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -14,7 +13,7 @@ use Lefty\Post\HTMLForm\UpdatePostForm;
 /**
  * A sample controller to show how a controller class can be implemented.
  */
-class PostController implements ContainerInjectableInterface
+class TagController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -53,11 +52,11 @@ class PostController implements ContainerInjectableInterface
     public function indexActionGet() : object
     {
         $page = $this->di->get("page");
-        $post = new Post();
-        $post->setDb($this->di->get("dbqb"));
+        $tag = new Tag();
+        $tag->setDb($this->di->get("dbqb"));
 
-        $page->add("post/crud/view-all", [
-            "items" => $post->findAll(),
+        $page->add("tag/crud/view-all", [
+            "items" => $tag->findAll(),
         ]);
 
         return $page->render([
@@ -123,27 +122,35 @@ class PostController implements ContainerInjectableInterface
     }
 
         /**
-     * Handler with form to update an item.
+     * Handler to list post with specific tag
      *
-     * @param int $id the id to update.
+     * @param int $id the tag id.
      *
      * @return object as a response object
      */
-    public function updateAction(int $id) : object
+    public function listAction(int $id) : object
     {
         $page = $this->di->get("page");
-        $form = new UpdatePostForm($this->di, $id);
-        $form->check();
+        $tag = new Tag();
+        $tag->setDb($this->di->get("dbqb"));
+        $tag->find("id", $id);
+        // var_dump($tag->tag);
+
+        $posttag = new PostTag();
+        $posttag->setDb($this->di->get("dbqb"));
+        $posts = $posttag->findAllWhere("tag_id = ?", $tag->id);
+
+        // var_dump($posts);
 
 
 
-        $page->add("post/crud/update", [
-            "form" => $form->getHTML(),
-            "post_id" => $id
+        $page->add("tag/crud/view-list", [
+            "tag" => $tag->tag,
+            "items" => $posts
         ]);
 
         return $page->render([
-            "title" => "Update an item",
+            "title" => "List posts with tag",
         ]);
     }
 }

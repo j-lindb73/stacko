@@ -40,6 +40,18 @@ class UpdatePostForm extends FormModel
                     "value" => $post->title,
                 ],
 
+                "text" => [
+                    "type" => "text",
+                    "validation" => ["not_empty"],
+                    "value" => $post->text,
+                ],
+
+                "tags" => [
+                    "type" => "text",
+                    "validation" => ["not_empty"],
+                    "value" => $post->tags,
+                ],
+
                 "submit" => [
                     "type" => "submit",
                     "value" => "Save",
@@ -84,12 +96,12 @@ class UpdatePostForm extends FormModel
         $post->setDb($this->di->get("dbqb"));
         $post->find("id", $this->form->value("id"));
         $post->title = $this->form->value("title");
+        $post->text = $this->form->value("text");
+        $post->tags = $this->form->value("tags");
 
         $post->save();
         return true;
     }
-
-
 
     // /**
     //  * Callback what to do if the form was successfully submitted, this

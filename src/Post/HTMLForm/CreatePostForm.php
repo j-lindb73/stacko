@@ -91,7 +91,7 @@ class CreatePostForm extends FormModel
         $post->setDb($this->di->get("dbqb"));
         $post->title = $title;
         $post->text = $text;
-        $post->tags = $tags;
+        // $post->tags = $tags;
         $post->postTypeId = $postTypeId;
         $post->parentId = $this->parentId;
         $post->userId = $userId;

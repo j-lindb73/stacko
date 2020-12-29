@@ -48,6 +48,11 @@ return [
             ],
         ],
         [
+            "text" => "Tags",
+            "url" => "tag",
+            "title" => "Show tags.",
+        ],
+        [
             "text" => "Comments",
             "url" => "comment",
             "title" => "Administer comments.",

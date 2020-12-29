@@ -1,6 +1,7 @@
 <?php
 
 namespace Anax\View;
+$filter = new \Anax\TextFilter\TextFilter;
 
 /**
  * View to display all books.
@@ -53,9 +54,9 @@ endif;
         </td>
         <td><?= $item->postTypeId ?></td>
         <td><?= $item->parentId ?></td>
-        <td><?= $item->title ?></td>
+        <td><?= $filter->doFilter($item->title, ["nl2br"]); ?></td>
         <td><?= $item->text ?></td>
-        <td><?= $item->tags ?></td>
+        <td>n/a</td>
         <td><?= $item->created ?></td>
         <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
         <td><a href="<?= url("comment/create/{$item->id}"); ?>">Comment</a></td>

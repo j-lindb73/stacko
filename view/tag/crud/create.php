@@ -2,7 +2,6 @@
 
 namespace Anax\View;
 
-
 /**
  * View to create a new book.
  */
@@ -11,19 +10,17 @@ namespace Anax\View;
 //echo showEnvironment(get_defined_vars());
 
 // Gather incoming variables and use default values if not set
-$item = isset($item) ? $item : null;
+$items = isset($items) ? $items : null;
 
 // Create urls for navigation
-$urlToView = url("post");
+$urlToViewItems = url("book");
 
 
 
-?><h1>Update an item</h1>
+?><h1>Create a item</h1>
 
 <?= $form ?>
 
-
-
 <p>
-    <a href="<?= $urlToView ?>">View all</a>
+    <a href="<?= $urlToViewItems ?>">View all</a>
 </p>
