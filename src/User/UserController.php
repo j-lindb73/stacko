@@ -64,6 +64,29 @@ class UserController implements ContainerInjectableInterface
     }
 
 
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function listActionGet() : object
+    {
+        $page = $this->di->get("page");
+        $tag = new User();
+        $tag->setDb($this->di->get("dbqb"));
+
+        $page->add("user/crud/view-all", [
+            "items" => $tag->findAll(),
+        ]);
+
+        return $page->render([
+            "title" => "A collection of items",
+        ]);
+    }
 
     /**
      * Description.

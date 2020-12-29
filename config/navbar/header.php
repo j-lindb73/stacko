@@ -30,6 +30,11 @@ return [
                         "url" => "user/login",
                         "title" => "Login user.",
                     ],
+                    [
+                        "text" => "List",
+                        "url" => "user/list",
+                        "title" => "List users.",
+                    ],
                 ],
             ],
         ],

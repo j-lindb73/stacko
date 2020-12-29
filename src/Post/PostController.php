@@ -97,6 +97,38 @@ class PostController implements ContainerInjectableInterface
         ]);
     }
 
+    /**
+     * Handler to show user posts.
+     *
+     * @param int $id the userid to get posts from.
+     *
+     * @return object as a response object
+     */
+    public function userAction(int $id) : object
+    {
+        $page = $this->di->get("page");
+        $post = new Post();
+        $post->setDb($this->di->get("dbqb"));
+        
+        $posts = $post->getUserPosts($id);
+    
+
+        
+  
+
+  
+        // var_dump($res);
+        
+        $page->add("post/crud/view-list", [
+            "items" => $post->getUserPosts($id),
+ 
+        ]);
+
+        return $page->render([
+            "title" => "A question",
+        ]);
+    }
+
 
     /**
      * Description.

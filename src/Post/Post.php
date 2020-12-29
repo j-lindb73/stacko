@@ -129,4 +129,31 @@ class Post extends ActiveRecordModel
         return $res;
 
     }
+
+    /**
+    * Get user question posts
+    * 
+    * @param int $id userid
+    *
+    * @return object with question posts
+    */
+
+    public function getUserPosts(int $id)
+    {
+
+        $this->db->connect();
+
+        $res = $this->db->select("p.id, p.title, p.text, u.acronym, pt.name")
+        ->from("posts AS p")
+        ->where("userId = " . $id)
+        ->join("users AS u", "u.id = p.userId")
+        ->join("posttypes AS pt", "pt.id = p.postTypeId")
+        ->execute()
+        ->fetchAll();
+
+        return $res;
+
+    }
+
+
 }
