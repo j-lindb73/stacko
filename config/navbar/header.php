@@ -2,6 +2,9 @@
 /**
  * Supply the basis for the navbar as an array.
  */
+
+
+
 return [
     // Use for styling the menu
     "wrapper" => null,
@@ -29,6 +32,11 @@ return [
                         "text" => "Login",
                         "url" => "user/login",
                         "title" => "Login user.",
+                    ],
+                    [
+                        "text" => "Logout",
+                        "url" => "user/logout",
+                        "title" => "Logout user.",
                     ],
                     [
                         "text" => "List",
