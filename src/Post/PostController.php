@@ -66,6 +66,38 @@ class PostController implements ContainerInjectableInterface
     }
 
 
+        /**
+     * Handler with form to update an item.
+     *
+     * @param int $id the id to update.
+     *
+     * @return object as a response object
+     */
+    public function viewAction(int $id) : object
+    {
+        $page = $this->di->get("page");
+        $post = new Post();
+        $post->setDb($this->di->get("dbqb"));
+        
+        $question = $post->getPostQuestion($id);
+        // $questionOwnerId = $post->getPostOwner($id);
+        
+  
+
+  
+        // var_dump($res);
+        
+        $page->add("post/crud/view-post", [
+            "question" => $post->getPostQuestion($id),
+            "items" => $post->getPostAnswers($id),
+        ]);
+
+        return $page->render([
+            "title" => "A question",
+        ]);
+    }
+
+
     /**
      * Description.
      *

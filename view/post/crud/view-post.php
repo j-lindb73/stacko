@@ -8,6 +8,8 @@ $filter = new \Anax\TextFilter\TextFilter;
  */
 // Show all incoming variables/functions
 //var_dump(get_defined_functions());
+var_dump($question);
+
 //echo showEnvironment(get_defined_vars());
 
 // Gather incoming variables and use default values if not set
@@ -19,9 +21,12 @@ $urlToDelete = url("book/delete");
 $urlToAnswer = url("post/create");
 $urlToComment = url("comment/create");
 
+?><h1>Question</h1>
+<h3><?= $question->title ?></h3>
+<p><?= $filter->doFilter($question->text, ["markdown","nl2br"]) ?></p>
+<p><?= $question->acronym ?></p>
 
-
-?><h1>View all posts</h1>
+<h1>Answers</h1>
 
 <p>
     <a href="<?= $urlToCreate ?>">Create</a> | 
@@ -37,7 +42,7 @@ endif;
 
 <table>
     <tr>
-        <th>View</th>
+        <th>Id</th>
         <th>Posttype</th>
         <th>ParentId</th>
         <th>Title</th>
@@ -50,7 +55,7 @@ endif;
 
     <tr>
         <td>
-            <a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->id ?></a>
+            <a href="<?= url("post/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
         <td><?= $item->postTypeId ?></td>
         <td><?= $item->parentId ?></td>
