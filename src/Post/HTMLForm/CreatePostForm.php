@@ -84,7 +84,7 @@ class CreatePostForm extends FormModel
         
         
         // Set userid until fetched from session
-        $userId = 1;
+        $userId = $this->di->session->get("userID");
         
         
         $post = new Post();
@@ -95,7 +95,7 @@ class CreatePostForm extends FormModel
         $post->postTypeId = $postTypeId;
         $post->parentId = $this->parentId;
         $post->userId = $userId;
-        // $user->setPassword($password);
+
         $post->save();
         
         

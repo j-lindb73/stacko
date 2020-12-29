@@ -75,6 +75,13 @@ class UserController implements ContainerInjectableInterface
      */
     public function listActionGet() : object
     {
+        // Force login to access route
+        $session = $this->di->get("session");
+        if (!$session->get("login"))
+        {
+            $this->di->get("response")->redirect("user/login")->send();
+        }
+
         $page = $this->di->get("page");
         $tag = new User();
         $tag->setDb($this->di->get("dbqb"));
@@ -112,6 +119,22 @@ class UserController implements ContainerInjectableInterface
         ]);
     }
 
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function logoutAction() : object
+    {
+        $session = $this->di->get("session");
+        $session->destroy();
+        $this->di->get("response")->redirect("post")->send();
+    }
+
 
 
     /**
@@ -125,6 +148,13 @@ class UserController implements ContainerInjectableInterface
      */
     public function createAction() : object
     {
+        // Force login to access route
+        $session = $this->di->get("session");
+        if (!$session->get("login"))
+        {
+            $this->di->get("response")->redirect("user/login")->send();
+        }
+
         $page = $this->di->get("page");
         $form = new CreateUserForm($this->di);
         $form->check();

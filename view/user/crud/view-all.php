@@ -50,7 +50,7 @@ endif;
 
     <tr>
         <td>
-            <a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->id ?></a>
+            <a href="<?= url("post/user/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
         <td><?= $item->acronym ?></td>
         <td><?= $item->firstname ?></td>

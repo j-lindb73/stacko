@@ -52,6 +52,8 @@ class PostController implements ContainerInjectableInterface
      */
     public function indexActionGet() : object
     {
+
+
         $page = $this->di->get("page");
         $post = new Post();
         $post->setDb($this->di->get("dbqb"));
@@ -75,6 +77,9 @@ class PostController implements ContainerInjectableInterface
      */
     public function viewAction(int $id) : object
     {
+
+
+
         $page = $this->di->get("page");
         $post = new Post();
         $post->setDb($this->di->get("dbqb"));
@@ -113,10 +118,7 @@ class PostController implements ContainerInjectableInterface
         $posts = $post->getUserPosts($id);
     
 
-        
-  
-
-  
+         
         // var_dump($res);
         
         $page->add("post/crud/view-list", [
@@ -167,6 +169,13 @@ class PostController implements ContainerInjectableInterface
      */
     public function createAction() : object
     {
+        // Force login to access route
+        $session = $this->di->get("session");
+        if (!$session->get("login"))
+        {
+            $this->di->get("response")->redirect("user/login")->send();
+        }
+
         $page = $this->di->get("page");
         $request = $this->di->get("request");
         // var_dump($request);
@@ -195,6 +204,13 @@ class PostController implements ContainerInjectableInterface
      */
     public function updateAction(int $id) : object
     {
+        // Force login to access route
+        $session = $this->di->get("session");
+        if (!$session->get("login"))
+        {
+            $this->di->get("response")->redirect("user/login")->send();
+        }
+
         $page = $this->di->get("page");
         $form = new UpdatePostForm($this->di, $id);
         $form->check();
