@@ -70,7 +70,7 @@ class Post extends ActiveRecordModel
 
         $this->db->connect();
 
-        $res = $this->db->select("p.title, p.text, u.acronym")
+        $res = $this->db->select("p.id, p.title, p.text, u.acronym")
         ->from("posts As p")
         ->where("p.id = " . $id)
         ->join('users AS u', 'u.id = p.userId')
@@ -122,6 +122,32 @@ class Post extends ActiveRecordModel
 
         $res = $this->db->select("*")
         ->from("posts")
+        ->where("parentId = " . $id)
+        ->execute()
+        ->fetchAll();
+
+        return $res;
+
+    }
+
+    /**
+    * Get comments to post
+    * 
+    * @param int $id parent id
+    *
+    * @return object with comment posts
+    */
+
+    public function getPostComments(int $id)
+    {
+
+        // $sql = "SELECT * FROM users;";
+
+        // $db = $this->di->get("dbqb");
+        $this->db->connect();
+
+        $res = $this->db->select("*")
+        ->from("comments")
         ->where("parentId = " . $id)
         ->execute()
         ->fetchAll();

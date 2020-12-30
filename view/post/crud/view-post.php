@@ -8,7 +8,9 @@ $filter = new \Anax\TextFilter\TextFilter;
  */
 // Show all incoming variables/functions
 //var_dump(get_defined_functions());
-var_dump($question);
+// var_dump($question);
+// var_dump($questionComments);
+// var_dump($items);
 
 //echo showEnvironment(get_defined_vars());
 
@@ -21,16 +23,44 @@ $urlToDelete = url("book/delete");
 $urlToAnswer = url("post/create");
 $urlToComment = url("comment/create");
 
-?><h1>Question</h1>
+?><h1>Post</h1>
 <h3><?= $question->title ?></h3>
 <p><?= $filter->doFilter($question->text, ["markdown","nl2br"]) ?></p>
 <p><?= $question->acronym ?></p>
 
+<h2>Comments</h2>
+<p>
+    <a href="<?= $urlToComment . '/' . $question->id ?>">Create</a>
+</p>
+
+<?php if (!$questionComments) : ?>
+    <p>There are no items to show.</p>
+<?php else : ?>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Comment</th>
+        <th>Created</th>
+    </tr>
+    <?php foreach ($questionComments as $item) : ?>
+
+    <tr>
+        <td>
+            <a href="<?= url("comment/update/{$item->id}"); ?>"><?= $item->id ?></a>
+        </td>
+        <td><?= $filter->doFilter($item->body, ["nl2br"]); ?></td>
+        <td><?= $item->created ?></td>
+
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<?php endif; ?>
+
 <h1>Answers</h1>
 
 <p>
-    <a href="<?= $urlToCreate ?>">Create</a> | 
-    <a href="<?= $urlToDelete ?>">Delete</a>
+    <a href="<?= $urlToCreate . '?id=' . $question->id ?>">Create</a>
 </p>
 
 <?php if (!$items) : ?>
@@ -49,7 +79,7 @@ endif;
         <th>Text</th>
         <th>Tags</th>
         <th>Created</th>
-        <th>Answer</th>
+
     </tr>
     <?php foreach ($items as $item) : ?>
 
@@ -64,7 +94,7 @@ endif;
         <td>n/a</td>
         <td><?= $item->created ?></td>
         <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
-        <td><a href="<?= url("comment/create/{$item->id}"); ?>">Comment</a></td>
+        <td><a href="<?= url("post/view/{$item->id}"); ?>">View</a></td>
 
     </tr>
     <?php endforeach; ?>

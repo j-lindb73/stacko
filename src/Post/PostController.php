@@ -77,23 +77,20 @@ class PostController implements ContainerInjectableInterface
      */
     public function viewAction(int $id) : object
     {
-
-
-
         $page = $this->di->get("page");
         $post = new Post();
         $post->setDb($this->di->get("dbqb"));
         
         $question = $post->getPostQuestion($id);
-        // $questionOwnerId = $post->getPostOwner($id);
-        
-  
+
+        $questionComments = $post->getPostComments($id);  
 
   
         // var_dump($res);
         
         $page->add("post/crud/view-post", [
             "question" => $post->getPostQuestion($id),
+            "questionComments" => $post->getPostComments($id),
             "items" => $post->getPostAnswers($id),
         ]);
 
