@@ -6,6 +6,7 @@ use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Lefty\Post\HTMLForm\CreatePostForm;
 use Lefty\Post\HTMLForm\UpdatePostForm;
+use Lefty\Tag\PostTag;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -85,12 +86,17 @@ class PostController implements ContainerInjectableInterface
 
         $questionComments = $post->getPostComments($id);  
 
+        // Get post tags
+        $postTag = new PostTag;
+        $postTag->setDb($this->di->get("dbqb"));
+        
   
         // var_dump($res);
         
         $page->add("post/crud/view-post", [
             "question" => $post->getPostQuestion($id),
             "questionComments" => $post->getPostComments($id),
+            "postTags" => $postTag->getPostTags($id),
             "items" => $post->getPostAnswers($id),
         ]);
 

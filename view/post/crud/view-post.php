@@ -11,6 +11,7 @@ $filter = new \Anax\TextFilter\TextFilter;
 // var_dump($question);
 // var_dump($questionComments);
 // var_dump($items);
+var_dump($postTags);
 
 //echo showEnvironment(get_defined_vars());
 
@@ -24,9 +25,13 @@ $urlToAnswer = url("post/create");
 $urlToComment = url("comment/create");
 
 ?><h1>Post</h1>
+Tags: <?php foreach ($postTags as $item) : ?>
+    <?= $item->tag ?>
+<?php endforeach; ?>
+
+<p>User: <?= $question->acronym ?></p>
 <h3><?= $question->title ?></h3>
 <p><?= $filter->doFilter($question->text, ["markdown","nl2br"]) ?></p>
-<p><?= $question->acronym ?></p>
 
 <h2>Comments</h2>
 <p>

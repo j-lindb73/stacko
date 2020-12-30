@@ -23,4 +23,31 @@ class PostTag extends ActiveRecordModel
     public $post_id;
     public $tag_id;
 
+    
+    /**
+    * Get post tags
+    * 
+    * @param int $id post id
+    *
+    * @return object with post tags
+    */
+
+    public function getPostTags(int $id)
+    {
+
+        // $sql = "SELECT * FROM users;";
+
+        // $db = $this->di->get("dbqb");
+        $this->db->connect();
+
+        $res = $this->db->select("t.tag, pt.*")
+        ->from("posttags AS pt")
+        ->where("post_id = " . $id)
+        ->join("tags AS t", "pt.tag_id = t.id ")
+        ->execute()
+        ->fetchAll();
+
+        return $res;
+
+    }
 }
