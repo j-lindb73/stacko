@@ -54,4 +54,5 @@ class User extends ActiveRecordModel
         $this->find("email", $email);
         return password_verify($password, $this->password);
     }
+
 }
