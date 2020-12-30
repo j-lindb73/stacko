@@ -34,15 +34,17 @@ endif;
     <tr>
         <th>Id</th>
         <th>Tag</th>
+        <th>Count</th>
 
     </tr>
     <?php foreach ($items as $item) : ?>
 
     <tr>
-        <td>
-            <a href="<?= url("tag/list/{$item->id}"); ?>"><?= $item->id ?></a>
-        </td>
         <td><?= $item->tag ?></td>
+        <td><?= $item->count ?></td>
+        <td>
+            <a href="<?= url("tag/list/{$item->id}"); ?>">Posts</a>
+        </td>
     </tr>
     <?php endforeach; ?>
 </table>

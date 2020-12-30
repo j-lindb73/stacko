@@ -41,7 +41,7 @@ endif;
     <tr>
         <td><?= $item->id ?></td>
         <td>
-            <a href="<?= url("post/update/{$item->post_id}"); ?>"><?= $item->post_id ?></a>
+            <a href="<?= url("post/view/{$item->post_id}"); ?>"><?= $item->post_id ?></a>
         </td>
     </tr>
     <?php endforeach; ?>

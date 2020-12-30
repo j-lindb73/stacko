@@ -110,6 +110,11 @@ class CreatePostForm extends FormModel
                 $tag->find("tag", $value);
                 if (!$tag->tag == $value) {
                     $tag->tag = $value;
+                    $tag->count = 1;
+                    $tag->save();
+                } else {
+                    $tag->tag = $value;
+                    $tag->count = $tag->count + 1;
                     $tag->save();
                 }
                 
