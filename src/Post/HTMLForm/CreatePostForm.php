@@ -22,7 +22,7 @@ class CreatePostForm extends FormModel
 
     public $parentId;
 
-    public function __construct(ContainerInterface $di, $parentId = null)
+    public function __construct(ContainerInterface $di, $parentId = null, $tagStatus)
     {
         parent::__construct($di);
 
@@ -44,7 +44,7 @@ class CreatePostForm extends FormModel
                 ],
 
                 "tags" => [
-                    "type"        => "text",
+                    "type"        => $tagStatus,
                 ],
 
                 "parentId" => [
@@ -99,27 +99,28 @@ class CreatePostForm extends FormModel
         $post->save();
         
         
-        // Add tags to tag table and connection table
-        
-        $tags_array  = explode(" ", $tags);
-        foreach ($tags_array as $key => $value) {
-            $tag = new Tag();
-            $tag->setDb($this->di->get("dbqb"));
-            $tag->find("tag", $value);
-            if (!$tag->tag == $value) {
-                $tag->tag = $value;
-                $tag->save();
+        // Add tags to tag table and connection table if post is question
+
+        if ($postTypeId == 1) {
+            
+            $tags_array  = explode(" ", $tags);
+            foreach ($tags_array as $key => $value) {
+                $tag = new Tag();
+                $tag->setDb($this->di->get("dbqb"));
+                $tag->find("tag", $value);
+                if (!$tag->tag == $value) {
+                    $tag->tag = $value;
+                    $tag->save();
+                }
+                
+                $posttag = new PostTag();
+                $posttag->setDb($this->di->get("dbqb"));
+                $posttag->post_id = $post->id;
+                $posttag->tag_id = $tag->id;
+                $posttag->save();
+                
             }
-            
-            $posttag = new PostTag();
-            $posttag->setDb($this->di->get("dbqb"));
-            $posttag->post_id = $post->id;
-            $posttag->tag_id = $tag->id;
-            $posttag->save();
-            
         }
-
-
 
 
 

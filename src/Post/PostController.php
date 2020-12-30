@@ -179,8 +179,10 @@ class PostController implements ContainerInjectableInterface
         $parentId = $request->getGet('id', null);
 
         var_dump($parentId);
+        // Check if post if question or answer. Answers should not be able to tag
+        $tagStatus = isset($parentId) ? "hidden" : "text";
 
-        $form = new CreatePostForm($this->di, $parentId);
+        $form = new CreatePostForm($this->di, $parentId, $tagStatus);
         $form->check();
 
         $page->add("anax/v2/article/default", [
