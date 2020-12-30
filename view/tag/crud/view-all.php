@@ -32,7 +32,6 @@ endif;
 
 <table>
     <tr>
-        <th>Id</th>
         <th>Tag</th>
         <th>Count</th>
 

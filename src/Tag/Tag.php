@@ -22,4 +22,27 @@ class Tag extends ActiveRecordModel
     public $id;
     public $tag;
 
+    
+        /**
+    * Get tag info
+    * 
+    *
+    * @return object with tags
+    */
+
+    public function getTags()
+    {
+
+        $this->db->connect();
+
+        $res = $this->db->select("*")
+        ->from("tags")
+        ->orderby("count DESC")
+        ->execute()
+        ->fetchAll();
+
+        return $res;
+
+    }
+
 }

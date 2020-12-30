@@ -55,40 +55,16 @@ class TagController implements ContainerInjectableInterface
         $tag = new Tag();
         $tag->setDb($this->di->get("dbqb"));
 
+
+
         $page->add("tag/crud/view-all", [
-            "items" => $tag->findAll(),
+            "items" => $tag->getTags()
         ]);
 
         return $page->render([
             "title" => "A collection of items",
         ]);
     }
-
-
-    /**
-     * Description.
-     *
-     * @param datatype $variable Description
-     *
-     * @throws Exception
-     *
-     * @return object as a response object
-     */
-    public function loginAction() : object
-    {
-        $page = $this->di->get("page");
-        $form = new UserLoginForm($this->di);
-        $form->check();
-
-        $page->add("anax/v2/article/default", [
-            "content" => $form->getHTML(),
-        ]);
-
-        return $page->render([
-            "title" => "A login page",
-        ]);
-    }
-
 
 
     /**
@@ -138,8 +114,9 @@ class TagController implements ContainerInjectableInterface
 
         $posttag = new PostTag();
         $posttag->setDb($this->di->get("dbqb"));
-        $posts = $posttag->findAllWhere("tag_id = ?", $tag->id);
+        // $posts = $posttag->findAllWhere("tag_id = ?", $tag->id);
 
+        $posts = $posttag->getTagPosts($id);
         // var_dump($posts);
 
 

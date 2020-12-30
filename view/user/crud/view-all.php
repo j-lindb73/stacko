@@ -80,7 +80,7 @@ endif;
  * @return String containing either just a URL or a complete image tag
  * @source https://gravatar.com/site/implement/images/php/
  */
-function getGravatar( $email, $s = 80, $d = 'mp', $r = 'g', $img = true, $atts = array() ) {
+function getGravatar( $email, $s = 40, $d = 'mp', $r = 'g', $img = true, $atts = array() ) {
     $url = 'https://www.gravatar.com/avatar/';
     $url .= md5( strtolower( trim( $email ) ) );
     $url .= "?s=$s&d=$d&r=$r";
