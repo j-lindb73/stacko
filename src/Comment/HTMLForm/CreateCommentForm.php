@@ -90,7 +90,18 @@ class CreateCommentForm extends FormModel
         // $user->setPassword($password);
         $comment->save();
     
-        $this->form->addOutput("Comment was created.");
+        // $this->form->addOutput("Comment was created.");
         return true;
     }
+
+    /**
+    * Callback what to do if the form was successfully submitted, this
+    * happen when the submit callback method returns true. This method
+    * can/should be implemented by the subclass for a different behaviour.
+    */
+    public function callbackSuccess()
+    {
+        $this->di->get("response")->redirect("post/view/" . $this->parentId)->send();
+    }
+
 }
