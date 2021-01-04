@@ -180,8 +180,25 @@ class UserController implements ContainerInjectableInterface
         {
             $this->di->get("response")->redirect("user/login")->send();
         }
-                
+               
         $page = $this->di->get("page");
+
+        // Compare session user to user being edited. If user is 
+        // trying to edit some other user it should not succeed
+        $userIdsession = $session->get("userID");
+        if ($userIdsession != $id)
+        {
+
+            $page->add("anax/v2/article/default", [
+                "content" => "You can only edit your own profile",
+                ]);
+                
+                return $page->render([
+                    "title" => "A info page",
+                    ]);
+                    
+        }
+
         $form = new UpdateUserForm($this->di, $id);
         $form->check();
 
