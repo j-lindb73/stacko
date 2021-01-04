@@ -1,7 +1,6 @@
 <?php
 
 namespace Anax\View;
-$filter = new \Anax\TextFilter\TextFilter;
 
 /**
  * View to display all books.
@@ -14,20 +13,14 @@ $filter = new \Anax\TextFilter\TextFilter;
 $items = isset($items) ? $items : null;
 
 // Create urls for navigation
-$urlToCreate = url("post/create");
-$urlToDelete = url("book/delete");
-$urlToAnswer = url("post/create");
-$urlToComment = url("comment/create");
-
-
-
+$urlToCreate = url("user/create");
 
 
 ?><h1>View all users</h1>
 
 <p>
-    <a href="<?= $urlToCreate ?>">Create</a> | 
-    <a href="<?= $urlToDelete ?>">Delete</a>
+    <a href="<?= $urlToCreate ?>">Create</a>
+
 </p>
 
 <?php if (!$items) : ?>
@@ -40,12 +33,12 @@ endif;
 <table>
     <tr>
         <th>Picture</th>
-        <th>Id</th>
+        <th>Edit</th>
         <th>Acronym</th>
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
-        <th>Edit</th>
+        <th></th>
 
     </tr>
     <?php foreach ($items as $item) : ?>
@@ -53,14 +46,14 @@ endif;
     <tr>
         <td> <?= getGravatar($item->email) ?></td>
         <td>
-            <a href="<?= url("post/user/{$item->id}"); ?>"><?= $item->id ?></a>
+            <a href="<?= url("user/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
         <td><?= $item->acronym ?></td>
         <td><?= $item->firstname ?></td>
         <td><?= $item->lastname ?></td>
         <td><?= $item->email ?></td>
         <td>
-            <a href="<?= url("user/update/{$item->id}"); ?>"><?= $item->id ?></a>
+            <a href="<?= url("post/user/{$item->id}"); ?>">Posts</a>
         </td>
 
     </tr>
