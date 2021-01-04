@@ -104,7 +104,7 @@ class UserLoginForm extends FormModel
      */
     public function callbackSuccess()
     {
-        $this->di->get("response")->redirect("user")->send();
+        $this->di->get("response")->redirect("")->send();
     }
 
 
