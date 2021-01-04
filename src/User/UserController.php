@@ -137,7 +137,7 @@ class UserController implements ContainerInjectableInterface
     {
         $session = $this->di->get("session");
         $session->destroy();
-        $this->di->get("response")->redirect("post")->send();
+        $this->di->get("response")->redirect("")->send();
     }
 
 
