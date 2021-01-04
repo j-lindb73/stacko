@@ -5,9 +5,9 @@
 return [
     "routes" => [
         [
-            "info" => "Stacko controller.",
+            "info" => "Flat file content controller.",
             "mount" => null,
-            "handler" => "\Lefty\Controller\StackoController",
+            "handler" => "\Anax\Content\FileBasedContentController",
         ],
     ]
 ];

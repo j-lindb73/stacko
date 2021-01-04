@@ -55,4 +55,5 @@ class User extends ActiveRecordModel
         return password_verify($password, $this->password);
     }
 
+
 }

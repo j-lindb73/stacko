@@ -131,6 +131,31 @@ class Post extends ActiveRecordModel
     }
 
     /**
+    * Get latest posts
+    * 
+    *
+    * @return object with latest posts
+    */
+
+    public function getLatest($limit = 3)
+    {
+
+        $this->db->connect();
+
+        $res = $this->db->select("p.id, p.title, p.created, pt.name, u.email")
+        ->from("posts AS p")
+        ->join("users AS u", "u.id = p.userId")
+        ->join("posttypes AS pt", "pt.id = p.postTypeId")
+        ->limit($limit)
+        ->orderby("created DESC")
+        ->execute()
+        ->fetchAll();
+
+        return $res;
+
+    }
+
+    /**
     * Get comments to post
     * 
     * @param int $id parent id
@@ -182,4 +207,29 @@ class Post extends ActiveRecordModel
     }
 
 
+        /**
+    * Get top users
+    * 
+    *
+    * @return object with top users
+    */
+
+    public function getTopUsers($limit = 3)
+    {
+
+        $this->db->connect();
+
+        $res = $this->db->select("u.id, u.acronym, u.email, COUNT(*) AS 'count'")
+        ->from("posts AS p")
+        ->join("users AS u", "u.id = p.userId")
+        ->join("posttypes AS pt", "pt.id = p.postTypeId")
+        ->groupby("userId")
+        ->limit($limit)
+        ->orderby("count DESC")
+        ->execute()
+        ->fetchAll();
+
+        return $res;
+
+    }
 }

@@ -44,5 +44,28 @@ class Tag extends ActiveRecordModel
         return $res;
 
     }
+    
+        /**
+    * Get top tags
+    * 
+    *
+    * @return object with tags
+    */
+
+    public function getTopTags($limit = 3)
+    {
+
+        $this->db->connect();
+
+        $res = $this->db->select("*")
+        ->from("tags")
+        ->limit($limit)
+        ->orderby("count DESC")
+        ->execute()
+        ->fetchAll();
+
+        return $res;
+
+    }
 
 }

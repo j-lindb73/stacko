@@ -150,12 +150,7 @@ class UserController implements ContainerInjectableInterface
      */
     public function createAction() : object
     {
-        // Force login to access route
-        $session = $this->di->get("session");
-        if (!$session->get("login"))
-        {
-            $this->di->get("response")->redirect("user/login")->send();
-        }
+
 
         $page = $this->di->get("page");
         $form = new CreateUserForm($this->di);
@@ -179,6 +174,13 @@ class UserController implements ContainerInjectableInterface
      */
     public function updateAction(int $id) : object
     {
+        // Force login to access route
+        $session = $this->di->get("session");
+        if (!$session->get("login"))
+        {
+            $this->di->get("response")->redirect("user/login")->send();
+        }
+                
         $page = $this->di->get("page");
         $form = new UpdateUserForm($this->di, $id);
         $form->check();

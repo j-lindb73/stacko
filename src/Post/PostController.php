@@ -179,6 +179,9 @@ class PostController implements ContainerInjectableInterface
             $this->di->get("response")->redirect("user/login")->send();
         }
 
+        // var_dump($session->get("user"));
+        var_dump($this->di->session);
+
         $page = $this->di->get("page");
         $request = $this->di->get("request");
         // var_dump($request);
