@@ -83,6 +83,8 @@ class UserController implements ContainerInjectableInterface
             $this->di->get("response")->redirect("user/login")->send();
         }
 
+        $userIdsession = $session->get("userID");
+
         $page = $this->di->get("page");
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
@@ -90,6 +92,7 @@ class UserController implements ContainerInjectableInterface
 
         $page->add("user/crud/view-all", [
             "items" => $user->findAll(),
+            "userIdsession" => $userIdsession
         ]);
 
         return $page->render([

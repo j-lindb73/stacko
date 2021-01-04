@@ -46,7 +46,9 @@ endif;
     <tr>
         <td> <?= getGravatar($item->email) ?></td>
         <td>
-            <a href="<?= url("user/update/{$item->id}"); ?>"><?= $item->id ?></a>
+            <?php if ($userIdsession == $item->id) : ?>
+                <a href="<?= url("user/update/{$item->id}"); ?>">&#x270E;</a>
+            <?php endif; ?>
         </td>
         <td><?= $item->acronym ?></td>
         <td><?= $item->firstname ?></td>
