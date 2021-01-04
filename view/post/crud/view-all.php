@@ -24,8 +24,7 @@ $urlToComment = url("comment/create");
 ?><h1>View all posts</h1>
 
 <p>
-    <a href="<?= $urlToCreate ?>">Create</a> | 
-    <a href="<?= $urlToDelete ?>">Delete</a>
+    <a href="<?= $urlToCreate ?>">Create</a>
 </p>
 
 <?php if (!$items) : ?>
