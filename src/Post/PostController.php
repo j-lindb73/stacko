@@ -179,15 +179,10 @@ class PostController implements ContainerInjectableInterface
             $this->di->get("response")->redirect("user/login")->send();
         }
 
-        // var_dump($session->get("user"));
-        var_dump($this->di->session);
-
         $page = $this->di->get("page");
         $request = $this->di->get("request");
-        // var_dump($request);
         $parentId = $request->getGet('id', null);
 
-        var_dump($parentId);
         // Check if post if question or answer. Answers should not be able to tag
         $tagStatus = isset($parentId) ? "hidden" : "text";
 

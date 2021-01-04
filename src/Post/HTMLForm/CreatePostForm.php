@@ -26,7 +26,7 @@ class CreatePostForm extends FormModel
     {
         parent::__construct($di);
 
-        var_dump($parentId);
+        // If parentId is present, the post is an answer
         $this->parentId = $parentId;
 
         $this->form->create(
