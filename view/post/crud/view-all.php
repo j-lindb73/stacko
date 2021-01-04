@@ -15,9 +15,8 @@ $items = isset($items) ? $items : null;
 
 // Create urls for navigation
 $urlToCreate = url("post/create");
-$urlToDelete = url("book/delete");
 $urlToAnswer = url("post/create");
-$urlToComment = url("comment/create");
+
 
 
 
@@ -36,26 +35,31 @@ endif;
 
 <table>
     <tr>
-        <th>View</th>
         <th>Posttype</th>
-        <th>ParentId</th>
+        <th>ViewPost</th>
+        <th>ParentPost</th>
         <th>Title</th>
         <th>Text</th>
-        <th>Tags</th>
         <th>Created</th>
-        <th>Answer</th>
     </tr>
     <?php foreach ($items as $item) : ?>
 
     <tr>
         <td>
-            <a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->id ?></a>
+            <?php if($item->postTypeId == 1) :?>
+            ?
+            <?php else : ?>
+            !
+            <?php endif; ?>
         </td>
-        <td><?= $item->postTypeId ?></td>
-        <td><?= $item->parentId ?></td>
+        <td>
+            <?php if($item->postTypeId == 1) :?>
+            <a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->id ?></a>
+            <?php endif; ?>
+        </td>
+        <td><a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->parentId ?></a></td>
         <td><?= $filter->doFilter($item->title, ["nl2br"]); ?></td>
         <td><?= $item->text ?></td>
-        <td>n/a</td>
         <td><?= $item->created ?></td>
         <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
         <td><a href="<?= url("comment/create/{$item->id}"); ?>">Comment</a></td>

@@ -59,8 +59,12 @@ class PostController implements ContainerInjectableInterface
         $post = new Post();
         $post->setDb($this->di->get("dbqb"));
 
+        $allPosts = $post->getAll();
+
+        // var_dump($allPosts);
+
         $page->add("post/crud/view-all", [
-            "items" => $post->findAll(),
+            "items" => $allPosts,
         ]);
 
         return $page->render([

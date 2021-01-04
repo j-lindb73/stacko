@@ -30,31 +30,31 @@ class Post extends ActiveRecordModel
     public $deleted;
     public $active;
 
-    /**
-    * Set the password.
-    *
-    * @param string $password the password to use.
-    *
-    * @return void
-    */
-    public function setPassword($password)
-    {
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
-    }
+
 
     /**
-    * Verify the acronym and the password, if successful the object contains
-    * all details from the database row.
+    * Get all posts
+    * 
     *
-    * @param string $acronym  acronym to check.
-    * @param string $password the password to use.
-    *
-    * @return boolean true if acronym and password matches, else false.
+    * @return object with posts
     */
-    public function verifyPassword($acronym, $password)
+
+    public function getAll($order = 'p.created', $orderDirection = 'DESC')
     {
-        $this->find("acronym", $acronym);
-        return password_verify($password, $this->password);
+
+        $this->db->connect();
+
+        $res = $this->db->select("p.id AS 'id', postTypeId, parentId, p.title, p.text, p.created, u.acronym")
+        ->from("posts As p")
+        ->join('users AS u', 'u.id = p.userId')
+        ->orderby($order . " " . $orderDirection)
+        ->execute()
+        ->fetchAll();
+
+        // var_dump($this->db->getSQL());
+
+        return $res;
+
     }
 
     /**
