@@ -22,8 +22,3 @@ $urlToView = url("post");
 
 <?= $form ?>
 
-
-
-<p>
-    <a href="<?= $urlToView ?>">View all</a>
-</p>
