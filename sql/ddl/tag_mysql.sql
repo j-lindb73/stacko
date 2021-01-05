@@ -28,8 +28,8 @@ SET NAMES utf8mb4;
 --
 -- Table Tags
 --
-DROP TABLE IF EXISTS Tags;
-CREATE TABLE Tags (
+DROP TABLE IF EXISTS tags;
+CREATE TABLE tags (
     `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `tag` VARCHAR(128),
     `count` INTEGER
@@ -39,8 +39,8 @@ CREATE TABLE Tags (
 
 -- Table PostTags
 --
-DROP TABLE IF EXISTS PostTags;
-CREATE TABLE PostTags (
+DROP TABLE IF EXISTS posttags;
+CREATE TABLE posttags (
     `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `post_id` INTEGER NOT NULL,
     `tag_id` INTEGER NOT NULL

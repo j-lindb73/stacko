@@ -12,7 +12,7 @@ class Tag extends ActiveRecordModel
     /**
     * @var string $tableName name of the database table.
     */
-    protected $tableName = "Tags";
+    protected $tableName = "tags";
 
     /**
     * Columns in the table.

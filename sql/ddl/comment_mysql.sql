@@ -26,8 +26,8 @@ SET NAMES utf8mb4;
 --
 -- Table Comments
 --
-DROP TABLE IF EXISTS Comments;
-CREATE TABLE Comments (
+DROP TABLE IF EXISTS comments;
+CREATE TABLE comments (
     `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `parentId` INTEGER NOT NULL,
     `userId` INTEGER NOT NULL,

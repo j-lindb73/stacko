@@ -12,7 +12,7 @@ class PostTag extends ActiveRecordModel
     /**
     * @var string $tableName name of the database table.
     */
-    protected $tableName = "PostTags";
+    protected $tableName = "posttags";
 
     /**
     * Columns in the table.

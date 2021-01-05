@@ -28,8 +28,8 @@ SET NAMES utf8mb4;
 --
 -- Table Posts
 --
-DROP TABLE IF EXISTS Posts;
-CREATE TABLE Posts (
+DROP TABLE IF EXISTS posts;
+CREATE TABLE posts (
     `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `postTypeId` INTEGER NOT NULL,
     `parentId` INTEGER,
@@ -47,8 +47,8 @@ CREATE TABLE Posts (
 
 -- Table PostTypes
 --
-DROP TABLE IF EXISTS PostTypes;
-CREATE TABLE PostTypes (
+DROP TABLE IF EXISTS posttypes;
+CREATE TABLE posttypes (
     `id` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `name` VARCHAR(32) NOT NULL
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;

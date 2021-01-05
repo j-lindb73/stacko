@@ -12,7 +12,7 @@ class Post extends ActiveRecordModel
     /**
     * @var string $tableName name of the database table.
     */
-    protected $tableName = "Posts";
+    protected $tableName = "posts";
 
     /**
     * Columns in the table.
@@ -222,7 +222,6 @@ class Post extends ActiveRecordModel
         $res = $this->db->select("u.id, u.acronym, u.email, COUNT(*) AS 'count'")
         ->from("posts AS p")
         ->join("users AS u", "u.id = p.userId")
-        ->join("posttypes AS pt", "pt.id = p.postTypeId")
         ->groupby("userId")
         ->limit($limit)
         ->orderby("count DESC")

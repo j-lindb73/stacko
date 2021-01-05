@@ -13,7 +13,7 @@ class Comment extends ActiveRecordModel
     /**
     * @var string $tableName name of the database table.
     */
-    protected $tableName = "Comments";
+    protected $tableName = "comments";
 
     /**
     * Columns in the table.
