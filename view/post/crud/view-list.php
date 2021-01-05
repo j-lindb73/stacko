@@ -8,7 +8,7 @@ $filter = new \Anax\TextFilter\TextFilter;
  */
 // Show all incoming variables/functions
 //var_dump(get_defined_functions());
-var_dump($items);
+// var_dump($items);
 // var_dump($answers);
 //echo showEnvironment(get_defined_vars());
 
