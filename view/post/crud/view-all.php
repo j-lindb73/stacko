@@ -57,7 +57,7 @@ endif;
             <a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->id ?></a>
             <?php endif; ?>
         </td>
-        <td><a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->parentId ?></a></td>
+        <td><a href="<?= url("post/view/{$item->parentId}"); ?>"><?= $item->parentId ?></a></td>
         <td><?= $filter->doFilter($item->title, ["nl2br"]); ?></td>
         <td><?= $item->text ?></td>
         <td><?= $item->created ?></td>
