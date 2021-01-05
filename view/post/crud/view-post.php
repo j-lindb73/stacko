@@ -11,7 +11,7 @@ $filter = new \Anax\TextFilter\TextFilter;
 // var_dump($question);
 // var_dump($questionComments);
 // var_dump($items);
-var_dump($postTags);
+// var_dump($postTags);
 
 //echo showEnvironment(get_defined_vars());
 
@@ -20,9 +20,13 @@ $items = isset($items) ? $items : null;
 
 // Create urls for navigation
 $urlToCreate = url("post/create");
-$urlToDelete = url("book/delete");
+$urlToView = url("post/view");
 $urlToAnswer = url("post/create");
 $urlToComment = url("comment/create");
+
+if ($question->parentId) {
+    echo("<p><a href='" . $urlToView . "/" . $question->parentId . "'>Go to parent post</a>");
+}
 
 ?><h1>Post</h1>
 Tags: <?php foreach ($postTags as $item) : ?>
@@ -78,11 +82,8 @@ endif;
 <table>
     <tr>
         <th>Id</th>
-        <th>Posttype</th>
-        <th>ParentId</th>
         <th>Title</th>
         <th>Text</th>
-        <th>Tags</th>
         <th>Created</th>
 
     </tr>
@@ -92,11 +93,8 @@ endif;
         <td>
             <a href="<?= url("post/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
-        <td><?= $item->postTypeId ?></td>
-        <td><?= $item->parentId ?></td>
         <td><?= $filter->doFilter($item->title, ["nl2br"]); ?></td>
         <td><?= $item->text ?></td>
-        <td>n/a</td>
         <td><?= $item->created ?></td>
         <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
         <td><a href="<?= url("post/view/{$item->id}"); ?>">View</a></td>
