@@ -34,19 +34,46 @@ endif;
 
 <table>
     <tr>
-        <th>Post</th>
-        <th>Type</th>
+        <th>Posttype</th>
+        <th>ViewPost</th>
+        <th>ParentPost</th>
         <th>Title</th>
-
+        <th>Text</th>
+        <th>Created</th>
     </tr>
     <?php foreach ($items as $item) : ?>
 
     <tr>
         <td>
-            <a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->id ?></a>
+            <?php if($item->postTypeId == 1) :?>
+            ?
+            <?php else : ?>
+            !
+            <?php endif; ?>
         </td>
-        <td><?= $item->name ?></td>
-        <td><?= $item->title ?></td>
+        <td>
+            <?php if($item->postTypeId == 1) :?>
+            <a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->id ?></a>
+            <?php endif; ?>
+        </td>
+        <td><a href="<?= url("post/view/{$item->parentId}"); ?>"><?= $item->parentId ?></a></td>
+        <td><?= $filter->doFilter($item->title, ["nl2br"]); ?></td>
+        <td><?= $item->text ?></td>
+        <td><?= $item->created ?></td>
+        <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
+        <td><a href="<?= url("comment/create/{$item->id}"); ?>">Comment</a></td>
+
     </tr>
     <?php endforeach; ?>
 </table>
+
+<?php
+function generateLink($urlToAnswer, $postTypeId, $id)
+{
+    $link = "";
+    if ($postTypeId == 1) {
+
+        $link = "<a href=" . $urlToAnswer . '?id=' . $id . ">Answer</a>";
+    }
+    return $link;
+}
