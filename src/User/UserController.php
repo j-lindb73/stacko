@@ -55,8 +55,10 @@ class UserController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
 
+        $createLink = "<p><a href='user/create'>Create user</a></p>";
+    
         $page->add("anax/v2/article/default", [
-            "content" => "An index page",
+            "content" => $createLink,
         ]);
 
         return $page->render([
