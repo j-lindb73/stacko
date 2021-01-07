@@ -24,5 +24,4 @@ before_script:
     - make install
 
 script:
-    - chmod 777 cache/*
     - make test
