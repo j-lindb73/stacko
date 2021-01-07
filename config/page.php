@@ -12,7 +12,7 @@ return [
         "region" => "layout",
         "template" => "anax/v2/layout/dbwebb_se",
         "data" => [
-            "baseTitle" => " | ramverk1",
+            "baseTitle" => " | Stacko",
             "bodyClass" => null,
             "favicon" => "favicon.ico",
             "htmlClass" => null,
@@ -33,7 +33,7 @@ return [
             "template" => "anax/v2/header/site_logo",
             "data" => [
                 "class" => "large",
-                "siteLogo"      => "image/theme/leaf_256x256.png",
+                "siteLogo"      => "image/theme/stacko_256x256.png",
                 "siteLogoAlt"   => "Löv",
             ],
         ],
@@ -42,8 +42,8 @@ return [
             "template" => "anax/v2/header/site_logo_text",
             "data" => [
                 "homeLink"      => "",
-                "siteLogoText"  => "ramverk1",
-                "siteLogoTextIcon" => "image/theme/leaf_40x40.png",
+                "siteLogoText"  => "Stacko",
+                "siteLogoTextIcon" => "image/theme/stacko_40x40.png",
                 "siteLogoTextIconAlt" => "Löv-bild",
             ],
         ],
@@ -61,28 +61,28 @@ return [
                 "navbarConfig" => require __DIR__ . "/navbar/responsive.php",
             ],
         ],
-        [
-            "region" => "footer",
-            "template" => "anax/v2/columns/multiple_columns",
-            "data" => [
-                "class"  => "footer-column",
-                "columns" => [
-                    [
-                        "template" => "anax/v2/block/default",
-                        "contentRoute" => "block/footer-col-1",
-                    ],
-                    [
-                        "template" => "anax/v2/block/default",
-                        "contentRoute" => "block/footer-col-2",
-                    ],
-                    [
-                        "template" => "anax/v2/block/default",
-                        "contentRoute" => "block/footer-col-3",
-                    ]
-                ]
-            ],
-            "sort" => 1
-        ],
+        // [
+        //     "region" => "footer",
+        //     "template" => "anax/v2/columns/multiple_columns",
+        //     "data" => [
+        //         "class"  => "footer-column",
+        //         "columns" => [
+        //             [
+        //                 "template" => "anax/v2/block/default",
+        //                 "contentRoute" => "block/footer-col-1",
+        //             ],
+        //             [
+        //                 "template" => "anax/v2/block/default",
+        //                 "contentRoute" => "block/footer-col-2",
+        //             ],
+        //             [
+        //                 "template" => "anax/v2/block/default",
+        //                 "contentRoute" => "block/footer-col-3",
+        //             ]
+        //         ]
+        //     ],
+        //     "sort" => 1
+        // ],
         [
             "region" => "footer",
             "template" => "anax/v2/block/default",
