@@ -35,7 +35,9 @@ composer install
 If you want a working database with content, use scripts in sql-folder.
 
 To set up database (sql/setup.sql)
+
 To set up tables (sql/ddl/*)
+
 To set up data in tables (sql/dml/insert.sql)
 
 
