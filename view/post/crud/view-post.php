@@ -21,6 +21,7 @@ $items = isset($items) ? $items : null;
 // Create urls for navigation
 $urlToCreate = url("post/create");
 $urlToView = url("post/view");
+$urlToUpdate = url("post/update");
 $urlToAnswer = url("post/create");
 $urlToComment = url("comment/create");
 
@@ -29,6 +30,9 @@ if ($question->parentId) {
 }
 
 ?><h1>Post</h1>
+<p>
+    <a href="<?= $urlToUpdate . '/' . $question->id ?>">Edit</a>
+</p>
 Tags: <?php foreach ($postTags as $item) : ?>
     <?= $item->tag ?>
 <?php endforeach; ?>
