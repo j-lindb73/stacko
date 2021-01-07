@@ -83,7 +83,7 @@ class TagController implements ContainerInjectableInterface
         // var_dump($request);
         $parentId = $request->getGet('id', null);
 
-        var_dump($parentId);
+        // var_dump($parentId);
 
         $form = new CreatePostForm($this->di, $parentId);
         $form->check();

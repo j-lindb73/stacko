@@ -46,7 +46,6 @@ class StackoController implements ContainerInjectableInterface
     /**
      * Description.
      *
-     * @param datatype $variable Description
      *
      * @throws Exception
      *

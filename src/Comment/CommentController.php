@@ -44,8 +44,6 @@ class CommentController implements ContainerInjectableInterface
     /**
      * Description.
      *
-     * @param datatype $variable Description
-     *
      * @throws Exception
      *
      * @return object as a response object
@@ -81,7 +79,7 @@ class CommentController implements ContainerInjectableInterface
         // // var_dump($request);
         // $parentId = $request->getGet('id', null);
 
-        var_dump($parentId);
+        // var_dump($parentId);
 
         $form = new CreateCommentForm($this->di, $parentId);
         $form->check();

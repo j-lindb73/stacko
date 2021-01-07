@@ -24,7 +24,7 @@ class CreateCommentForm extends FormModel
     {
         parent::__construct($di);
 
-        var_dump($parentId);
+        // var_dump($parentId);
         $this->parentId = $parentId;
 
         $this->form->create(
