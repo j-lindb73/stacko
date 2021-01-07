@@ -17,6 +17,7 @@ $items = isset($items) ? $items : null;
 $urlToCreate = url("post/create");
 $urlToDelete = url("book/delete");
 $urlToAnswer = url("post/create");
+$urlToView = url("post/view");
 
 
 
@@ -32,11 +33,9 @@ endif;
 <table>
     <tr>
         <th>Id</th>
-
-        <th>ParentId</th>
         <th>Title</th>
         <th>Created</th>
-        <th>Answer</th>
+        <th>Parent</th>
     </tr>
     <?php foreach ($items as $item) : ?>
 
@@ -44,9 +43,9 @@ endif;
         <td>
             <a href="<?= url("comment/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
-        <td><?= $item->parentId ?></td>
         <td><?= $filter->doFilter($item->body, ["markdown"]); ?></td>
         <td><?= $item->created ?></td>
+        <td><a href='<?= $urlToView . "/" . $item->parentId ?>'><?= $item->parentId ?></a></td>
 
 
     </tr>
