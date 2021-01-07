@@ -142,7 +142,7 @@ class Post extends ActiveRecordModel
 
         $this->db->connect();
 
-        $res = $this->db->select("p.id, p.title, p.created, pt.name, u.email")
+        $res = $this->db->select("p.id, p.postTypeId, p.title, p.created, pt.name, u.email")
         ->from("posts AS p")
         ->join("users AS u", "u.id = p.userId")
         ->join("posttypes AS pt", "pt.id = p.postTypeId")

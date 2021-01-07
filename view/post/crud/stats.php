@@ -48,7 +48,13 @@ endif;
         <td>
             <a href="<?= url("post/view/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
-        <td><?= $item->name ?></td>
+        <td>
+            <?php if($item->postTypeId == 1) :?>
+            ?
+            <?php else : ?>
+            !
+            <?php endif; ?>
+        </td>
         <td><?= $item->title ?></td>
         <td><?= $item->created ?></td>
 
