@@ -69,15 +69,6 @@ return [
             "text" => "Comments",
             "url" => "comment",
             "title" => "Administer comments.",
-            "submenu" => [
-                "items" => [
-                    [
-                        "text" => "Create",
-                        "url" => "comment/create",
-                        "title" => "Create comment.",
-                    ],
-                ],
-            ],
         ],
         [
             "text" => "Om",
