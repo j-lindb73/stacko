@@ -19,10 +19,10 @@ views:
 Om
 =========================
 
-Detta innehåll är skrivet i markdown och du hittar innehållet i filen `content/om.md`.
+Denna sida är skapad på senhösten 2020 under brinnande pandemi av mig, Johan Lindberg.
 
-Skriv några kloka ord om kursen?
+Syftet är att praktisera ett antal olika designmönster bl.a. Active Model och Query Builder för kommunikation med databaser.
 
-Lägg till en representativ bild för kursen, enligt ditt egna val.
+Se det hela som ett klotterplank där man kan ställa vilken fråga som helst för att sedan få svar. Det går också att skapa kommentarer till både frågor och svar.
 
-[FIGURE src=image/car.png?w=300 caption="En fin bil som demobild."]
+Koden finns som ett github-repo på [https://github.com/j-lindb73/stacko](https://github.com/j-lindb73/stacko).

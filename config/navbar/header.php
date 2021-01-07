@@ -72,18 +72,9 @@ return [
         ],
         [
             "text" => "Om",
-            "url" => "om",
-            "title" => "Om denna webbplats.",
+            "url" => "about",
+            "title" => "About this website.",
         ],
-        [
-            "text" => "Styleväljare",
-            "url" => "style",
-            "title" => "Välj stylesheet.",
-        ],
-        [
-            "text" => "Verktyg",
-            "url" => "verktyg",
-            "title" => "Verktyg och möjligheter för utveckling.",
-        ],
+
     ],
 ];

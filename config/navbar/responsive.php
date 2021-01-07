@@ -16,38 +16,63 @@ return [
             "title" => "Första sidan, börja här.",
         ],
         [
-            "text" => "Redovisning",
-            "url" => "redovisning",
-            "title" => "Redovisningstexter från kursmomenten.",
+            "text" => "Users",
+            "url" => "user",
+            "title" => "Administer users.",
             "submenu" => [
                 "items" => [
                     [
-                        "text" => "Kmom01",
-                        "url" => "redovisning/kmom01",
-                        "title" => "Redovisning för kmom01.",
+                        "text" => "Create",
+                        "url" => "user/create",
+                        "title" => "Create user.",
                     ],
                     [
-                        "text" => "Kmom02",
-                        "url" => "redovisning/kmom02",
-                        "title" => "Redovisning för kmom02.",
+                        "text" => "Login",
+                        "url" => "user/login",
+                        "title" => "Login user.",
+                    ],
+                    [
+                        "text" => "Logout",
+                        "url" => "user/logout",
+                        "title" => "Logout user.",
+                    ],
+                    [
+                        "text" => "List",
+                        "url" => "user/list",
+                        "title" => "List users.",
                     ],
                 ],
             ],
         ],
         [
+            "text" => "Posts",
+            "url" => "post",
+            "title" => "Administer posts.",
+            "submenu" => [
+                "items" => [
+                    [
+                        "text" => "Create",
+                        "url" => "post/create",
+                        "title" => "Create post.",
+                    ],
+                ],
+            ],
+        ],
+        [
+            "text" => "Tags",
+            "url" => "tag",
+            "title" => "Show tags.",
+        ],
+        [
+            "text" => "Comments",
+            "url" => "comment",
+            "title" => "Administer comments.",
+        ],
+        [
             "text" => "Om",
-            "url" => "om",
-            "title" => "Om denna webbplats.",
+            "url" => "about",
+            "title" => "About this website.",
         ],
-        [
-            "text" => "Styleväljare",
-            "url" => "style",
-            "title" => "Välj stylesheet.",
-        ],
-        [
-            "text" => "Verktyg",
-            "url" => "verktyg",
-            "title" => "Verktyg och möjligheter för utveckling.",
-        ],
+
     ],
 ];

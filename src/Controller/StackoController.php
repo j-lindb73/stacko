@@ -83,4 +83,36 @@ class StackoController implements ContainerInjectableInterface
     }
 
 
+    /**
+     * Render a page using flat file content.
+     *
+     *
+     * @return object as a response object
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function aboutActionGet() : object
+    {
+
+        // Get content from markdown file
+        $file = ANAX_INSTALL_PATH . "/content/om.md";
+
+        $content = file_get_contents($file);
+        $content = $this->di->get("textfilter")->parse(
+            $content,
+            ["frontmatter", "variable", "shortcode", "markdown", "titlefromheader"]
+        );
+
+        // Add content as a view and then render the page
+        $page = $this->di->get("page");
+        $page->add("anax/v2/article/default", [
+            "content" => $content->text,
+            "frontmatter" => $content->frontmatter,
+        ]);
+
+        return $page->render($content->frontmatter);
+
+
+}
+
 }
