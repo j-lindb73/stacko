@@ -97,7 +97,7 @@ endif;
         <td>
             <a href="<?= url("post/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
-        <td><?= $filter->doFilter($item->title, ["nl2br"]); ?></td>
+        <td><?= $filter->doFilter($item->title, ["markdown", "nl2br"]); ?></td>
         <td><?= $filter->doFilter($item->text, ["markdown", "nl2br"]); ?></td>
         <td><?= $item->created ?></td>
         <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
