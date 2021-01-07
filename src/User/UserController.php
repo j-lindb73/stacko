@@ -90,7 +90,7 @@ class UserController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
-
+        
 
         $page->add("user/crud/view-all", [
             "items" => $user->findAll(),
@@ -98,7 +98,7 @@ class UserController implements ContainerInjectableInterface
         ]);
 
         return $page->render([
-            "title" => "A collection of items",
+            "title" => "Users",
         ]);
     }
 
