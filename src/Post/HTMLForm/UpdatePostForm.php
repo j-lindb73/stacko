@@ -46,11 +46,6 @@ class UpdatePostForm extends FormModel
                     "value" => $post->text,
                 ],
 
-                "tags" => [
-                    "type" => "text",
-                    "validation" => ["not_empty"],
-                    "value" => $post->tags,
-                ],
 
                 "submit" => [
                     "type" => "submit",
