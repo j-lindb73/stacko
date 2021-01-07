@@ -1,1 +1,1 @@
-Copyright 2021 Johan Lindberg.
+Copyright 2021 Johan Lindberg
