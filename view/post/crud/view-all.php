@@ -59,7 +59,7 @@ endif;
         </td>
         <td><a href="<?= url("post/view/{$item->parentId}"); ?>"><?= $item->parentId ?></a></td>
         <td><?= $filter->doFilter($item->title, ["nl2br"]); ?></td>
-        <td><?= $item->text ?></td>
+        <td><?= $filter->doFilter($item->text, ["markdown","nl2br"]); ?></td>
         <td><?= $item->created ?></td>
         <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
         <td><a href="<?= url("comment/create/{$item->id}"); ?>">Comment</a></td>

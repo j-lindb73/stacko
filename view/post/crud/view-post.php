@@ -57,7 +57,7 @@ Tags: <?php foreach ($postTags as $item) : ?>
         <td>
             <a href="<?= url("comment/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
-        <td><?= $filter->doFilter($item->body, ["nl2br"]); ?></td>
+        <td><?= $filter->doFilter($item->body, ["markdown","nl2br"]); ?></td>
         <td><?= $item->created ?></td>
 
     </tr>
@@ -94,7 +94,7 @@ endif;
             <a href="<?= url("post/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
         <td><?= $filter->doFilter($item->title, ["nl2br"]); ?></td>
-        <td><?= $item->text ?></td>
+        <td><?= $filter->doFilter($item->text, ["markdown", "nl2br"]); ?></td>
         <td><?= $item->created ?></td>
         <td> <?= generateLink($urlToAnswer, $item->postTypeId, $item->id) ?></td>
         <td><a href="<?= url("post/view/{$item->id}"); ?>">View</a></td>
