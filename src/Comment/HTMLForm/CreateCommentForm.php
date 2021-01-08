@@ -66,7 +66,7 @@ class CreateCommentForm extends FormModel
         
 
         // Set userid until fetched from session
-        $userId = 1;
+        $userId = $this->di->session->get("userID");
     
         // Check password matches
         // if ($password !== $passwordAgain ) {
