@@ -95,7 +95,7 @@ class PostController implements ContainerInjectableInterface
         $postTag->setDb($this->di->get("dbqb"));
         
   
-        // var_dump($res);
+        // var_dump($question);
         
         $page->add("post/crud/view-post", [
             "question" => $post->getPostQuestion($id),
@@ -135,31 +135,6 @@ class PostController implements ContainerInjectableInterface
 
         return $page->render([
             "title" => "A question",
-        ]);
-    }
-
-
-    /**
-     * Description.
-     *
-     * @param datatype $variable Description
-     *
-     * @throws Exception
-     *
-     * @return object as a response object
-     */
-    public function loginAction() : object
-    {
-        $page = $this->di->get("page");
-        $form = new UserLoginForm($this->di);
-        $form->check();
-
-        $page->add("anax/v2/article/default", [
-            "content" => $form->getHTML(),
-        ]);
-
-        return $page->render([
-            "title" => "A login page",
         ]);
     }
 
@@ -219,7 +194,29 @@ class PostController implements ContainerInjectableInterface
             $this->di->get("response")->redirect("user/login")->send();
         }
 
+        $post = new Post();
+        $post->setDb($this->di->get("dbqb"));
+        $postOwner = $post->getPostOwner($id);
+        
+        // Compare session user to post being edited. If user is 
+        // trying to edit some other users post it should not succeed
+        $userIdsession = $session->get("userID");
+        // var_dump($postOwner->userId);
         $page = $this->di->get("page");
+
+        if ($userIdsession != $postOwner->userId)
+        {
+
+            $page->add("anax/v2/article/default", [
+                "content" => "You can only edit your own posts",
+                ]);
+                
+                return $page->render([
+                    "title" => "A info page",
+                    ]);
+                    
+        }
+
         $form = new UpdatePostForm($this->di, $id);
         $form->check();
 
