@@ -118,15 +118,20 @@ class PostController implements ContainerInjectableInterface
      */
     public function userAction(int $id) : object
     {
+
+        // Force login to access route
+        $session = $this->di->get("session");
+        if (!$session->get("login"))
+        {
+            $this->di->get("response")->redirect("user/login")->send();
+        }
+
         $page = $this->di->get("page");
         $post = new Post();
         $post->setDb($this->di->get("dbqb"));
         
         $posts = $post->getUserPosts($id);
     
-
-         
-        // var_dump($res);
         
         $page->add("post/crud/view-list", [
             "items" => $post->getUserPosts($id),
