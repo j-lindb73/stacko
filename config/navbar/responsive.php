@@ -11,7 +11,7 @@ return [
     // Here comes the menu items
     "items" => [
         [
-            "text" => "Hem",
+            "text" => "Home",
             "url" => "",
             "title" => "Första sidan, börja här.",
         ],
@@ -69,7 +69,7 @@ return [
             "title" => "Administer comments.",
         ],
         [
-            "text" => "Om",
+            "text" => "About",
             "url" => "about",
             "title" => "About this website.",
         ],
