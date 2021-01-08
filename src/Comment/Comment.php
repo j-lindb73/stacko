@@ -28,4 +28,28 @@ class Comment extends ActiveRecordModel
     public $deleted;
     public $active;
 
+
+    /**
+    * Get comment owner
+    * 
+    * @param int $id comment id
+    *
+    * @return object with comment owner
+    */
+
+    public function getCommentOwner(int $id)
+    {
+
+        $this->db->connect();
+
+        $res = $this->db->select("userId")
+        ->from("comments")
+        ->where("id = " . $id)
+        ->execute()
+        ->fetch();
+
+        return $res;
+
+    }
+
 }

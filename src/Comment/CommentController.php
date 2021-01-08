@@ -102,7 +102,37 @@ class CommentController implements ContainerInjectableInterface
      */
     public function updateAction(int $id) : object
     {
+        // Force login to access route
+        $session = $this->di->get("session");
+        if (!$session->get("login"))
+        {
+            $this->di->get("response")->redirect("user/login")->send();
+        }
+
+        $comment = new Comment();
+        $comment->setDb($this->di->get("dbqb"));
+        $commentOwner = $comment->getCommentOwner($id);
+        
+        // Compare session user to comment being edited. If user is 
+        // trying to edit some other users comment it should not succeed
+        $userIdsession = $session->get("userID");
+
         $page = $this->di->get("page");
+
+        if ($userIdsession != $commentOwner->userId)
+        {
+
+            $page->add("anax/v2/article/default", [
+                "content" => "You can only edit your own comments",
+                ]);
+                
+                return $page->render([
+                    "title" => "A info page",
+                    ]);
+                    
+        }
+
+
         $form = new UpdateCommentForm($this->di, $id);
         $form->check();
         
