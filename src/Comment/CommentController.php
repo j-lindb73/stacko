@@ -74,12 +74,15 @@ class CommentController implements ContainerInjectableInterface
      */
     public function createAction(int $parentId) : object
     {
-        $page = $this->di->get("page");
-        // $request = $this->di->get("request");
-        // // var_dump($request);
-        // $parentId = $request->getGet('id', null);
+        // Force login to access route
+        $session = $this->di->get("session");
+        if (!$session->get("login"))
+        {
+            $this->di->get("response")->redirect("user/login")->send();
+        }
 
-        // var_dump($parentId);
+
+        $page = $this->di->get("page");
 
         $form = new CreateCommentForm($this->di, $parentId);
         $form->check();
