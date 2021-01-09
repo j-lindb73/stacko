@@ -9,6 +9,7 @@ $filter = new \Anax\TextFilter\TextFilter;
 // Show all incoming variables/functions
 //var_dump(get_defined_functions());
 //echo showEnvironment(get_defined_vars());
+var_dump($items);
 
 // Gather incoming variables and use default values if not set
 $items = isset($items) ? $items : null;
@@ -33,7 +34,8 @@ endif;
 <table>
     <tr>
         <th>Id</th>
-        <th>Title</th>
+        <th>User</th>
+        <th>Comment</th>
         <th>Created</th>
         <th>Parent</th>
     </tr>
@@ -43,6 +45,7 @@ endif;
         <td>
             <a href="<?= url("comment/update/{$item->id}"); ?>"><?= $item->id ?></a>
         </td>
+        <td><?= $item->acronym ?></td>
         <td><?= $filter->doFilter($item->body, ["markdown"]); ?></td>
         <td><?= $item->created ?></td>
         <td><a href='<?= $urlToView . "/" . $item->parentId ?>'><?= $item->parentId ?></a></td>

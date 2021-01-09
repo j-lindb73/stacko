@@ -55,7 +55,7 @@ class CommentController implements ContainerInjectableInterface
         $comment->setDb($this->di->get("dbqb"));
 
         $page->add("comment/crud/view-all", [
-            "items" => $comment->findAll(),
+            "items" => $comment->getAll(),
         ]);
 
         return $page->render([

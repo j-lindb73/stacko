@@ -28,6 +28,30 @@ class Comment extends ActiveRecordModel
     public $deleted;
     public $active;
 
+    /**
+    * Get all comments
+    * 
+    *
+    * @return object with comments
+    */
+
+    public function getAll($order = 'c.created', $orderDirection = 'DESC')
+    {
+
+        $this->db->connect();
+
+        $res = $this->db->select("c.id, c.parentId, c.userId, c.body, c.created, u.acronym")
+        ->from("comments AS c")
+        ->join('users AS u', 'u.id = c.userId')
+        ->orderby($order . " " . $orderDirection)
+        ->execute()
+        ->fetchAll();
+
+        // var_dump($this->db->getSQL());
+
+        return $res;
+
+    }
 
     /**
     * Get comment owner
