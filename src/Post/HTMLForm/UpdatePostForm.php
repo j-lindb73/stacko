@@ -90,9 +90,9 @@ class UpdatePostForm extends FormModel
         $post = new Post();
         $post->setDb($this->di->get("dbqb"));
         $post->find("id", $this->form->value("id"));
-        $post->title = $this->form->value("title");
-        $post->text = $this->form->value("text");
-        $post->tags = $this->form->value("tags");
+        $post->title = $this->form->rawValue("title");
+        $post->text = $this->form->rawValue("text");
+        $post->tags = $this->form->rawValue("tags");
 
         $post->save();
         return true;

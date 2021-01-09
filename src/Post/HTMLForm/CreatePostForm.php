@@ -75,9 +75,9 @@ class CreatePostForm extends FormModel
     public function callbackSubmit()
     {
         // Get values from the submitted form
-        $title       = $this->form->value("title");
-        $text       = $this->form->value("text");
-        $tags  = $this->form->value("tags");
+        $title       = $this->form->rawValue("title");
+        $text       = $this->form->rawValue("text");
+        $tags  = $this->form->rawValue("tags");
         
         // Set post type        
         $postTypeId = isset($this->parentId) ? 2 : 1;

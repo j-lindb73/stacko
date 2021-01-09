@@ -83,7 +83,7 @@ class UpdateCommentForm extends FormModel
         $comment = new Comment();
         $comment->setDb($this->di->get("dbqb"));
         $comment->find("id", $this->form->value("id"));
-        $comment->body = $this->form->value("body");
+        $comment->body = $this->form->rawValue("body");
 
 
 

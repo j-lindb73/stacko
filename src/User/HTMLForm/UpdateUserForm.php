@@ -103,10 +103,10 @@ class UpdateUserForm extends FormModel
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $user->find("id", $this->form->value("id"));
-        $user->acronym = $this->form->value("acronym");
+        $user->acronym = $this->form->rawValue("acronym");
         $user->email = $this->form->value("email");
-        $user->firstname = $this->form->value("firstname");
-        $user->lastname = $this->form->value("lastname");
+        $user->firstname = $this->form->rawValue("firstname");
+        $user->lastname = $this->form->rawValue("lastname");
 
         $user->save();
         return true;

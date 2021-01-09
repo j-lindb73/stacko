@@ -62,32 +62,18 @@ class CreateCommentForm extends FormModel
     public function callbackSubmit()
     {
         // Get values from the submitted form
-        $body       = $this->form->value("body");
+        $body       = $this->form->rawValue("body");
         
 
-        // Set userid until fetched from session
+        // Set userid from session
         $userId = $this->di->session->get("userID");
     
-        // Check password matches
-        // if ($password !== $passwordAgain ) {
-        //     $this->form->rememberValues();
-        //     $this->form->addOutput("Password did not match.");
-        //     return false;
-        // }
-    
-        // Save to database
-        // $db = $this->di->get("dbqb");
-        // $password = password_hash($password, PASSWORD_DEFAULT);
-        // $db->connect()
-        //    ->insert("User", ["acronym", "password"])
-        //    ->execute([$acronym])
-        //    ->fetch();
+
         $comment = new Comment();
         $comment->setDb($this->di->get("dbqb"));
         $comment->body = $body;
         $comment->parentId = $this->parentId;
         $comment->userId = $userId;
-        // $user->setPassword($password);
         $comment->save();
     
         // $this->form->addOutput("Comment was created.");
