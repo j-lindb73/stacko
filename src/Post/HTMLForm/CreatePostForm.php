@@ -129,7 +129,7 @@ class CreatePostForm extends FormModel
 
 
 
-        $this->form->addOutput("Post was created...with id " . $post->id);
+        // $this->form->addOutput("Post was created...with id " . $post->id);
         return true;
     }
 
