@@ -6,6 +6,7 @@ use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Lefty\Comment\HTMLForm\CreateCommentForm;
 use Lefty\Comment\HTMLForm\UpdateCommentForm;
+use Lefty\Comment\HTMLForm\DeleteCommentForm;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -148,4 +149,26 @@ class CommentController implements ContainerInjectableInterface
             "title" => "Update an item",
         ]);
     }
+
+    
+    /**
+     * Handler with form to delete an item.
+     *
+     * @return object as a response object
+     */
+    public function deleteAction() : object
+    {
+        $page = $this->di->get("page");
+        $form = new DeleteCommentForm($this->di);
+        $form->check();
+
+        $page->add("comment/crud/delete", [
+            "form" => $form->getHTML(),
+        ]);
+
+        return $page->render([
+            "title" => "Delete an item",
+        ]);
+    }
+
 }

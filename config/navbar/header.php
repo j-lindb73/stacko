@@ -69,6 +69,15 @@ return [
             "text" => "Comments",
             "url" => "comment",
             "title" => "Administer comments.",
+            "submenu" => [
+                "items" => [
+                    [
+                        "text" => "Delete",
+                        "url" => "comment/delete",
+                        "title" => "Delete comment.",
+                    ],
+                ],
+            ],
         ],
         [
             "text" => "About",

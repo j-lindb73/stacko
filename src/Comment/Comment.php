@@ -76,4 +76,27 @@ class Comment extends ActiveRecordModel
 
     }
 
+    /**
+    * Get session user comments owner
+    * 
+    * @param int $id userid
+    *
+    * @return object with user comments
+    */
+
+    public function getUserComments(int $id)
+    {
+
+        $this->db->connect();
+
+        $res = $this->db->select("id, body")
+        ->from("comments")
+        ->where("userId = " . $id)
+        ->execute()
+        ->fetchAll();
+
+        return $res;
+
+    }
+
 }
