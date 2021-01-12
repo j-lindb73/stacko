@@ -158,6 +158,13 @@ class CommentController implements ContainerInjectableInterface
      */
     public function deleteAction() : object
     {
+        // Force login to access route
+        $session = $this->di->get("session");
+        if (!$session->get("login"))
+        {
+            $this->di->get("response")->redirect("user/login")->send();
+        }
+        
         $page = $this->di->get("page");
         $form = new DeleteCommentForm($this->di);
         $form->check();
