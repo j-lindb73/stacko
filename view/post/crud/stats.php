@@ -55,7 +55,7 @@ endif;
             !
             <?php endif; ?>
         </td>
-        <td><?= $item->title ?></td>
+        <td><?= $filter->doFilter($item->title, ["markdown", "nl2br"]) ?></td>
         <td><?= $item->created ?></td>
 
     </tr>
